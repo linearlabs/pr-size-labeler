@@ -34,6 +34,8 @@ labeler::label() {
       echoerr "Pull request is xl."
       exit 1
     fi
+  else
+    echo "is_xl=0" >> $GITHUB_OUTPUT
   fi
 }
 
