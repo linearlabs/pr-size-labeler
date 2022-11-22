@@ -46,6 +46,7 @@ jobs:
           l_label: 'size/l'
           l_max_size: '1000'
           xl_label: 'size/xl'
+          comment_if_xl: 'true'
           fail_if_xl: 'false'
           message_if_xl: >
             This PR exceeds the recommended size of 1000 lines.
@@ -61,6 +62,7 @@ jobs:
 - `*_max_size` (`xs_max_size`, `s_max_size`…): Adjust which amount of changes you consider appropriate for each size based on your project context
 - `fail_if_xl`: Set to `'true'` will report GitHub Workflow failure if the PR size is xl allowing to forbid PR merge
 - `message_if_xl`: Let the user(s) know that the PR exceeds the recommended size and what the consequences are
+- `comment_if_xl`: Post warning comments on pull requests labeled xl
 - `github_api_url`: Override this parameter in order to use with your own GitHub Enterprise Server. Example: `'https://github.example.com/api/v3'`
 - `files_to_ignore`: Whitespace separated list of files to ignore when calculating the PR size. Example: `'package-lock.json Pipfile.lock'`
 
