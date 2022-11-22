@@ -41,7 +41,7 @@ inputs:
     required: false
     default: 'size/xl'
   comment_if_xl:
-    description: 'Post warning comment on PR when size is xl'
+    description: 'Post warning comment on PR if size is xl'
     required: false
     default: 'false'
   fail_if_xl:
@@ -64,7 +64,7 @@ inputs:
     required: false
     default: ''
 outputs:
-  is_xl:
+  pr_is_xl:
     description: 'True if the pull request is xl'
 runs:
   using: 'docker'
