@@ -27,7 +27,12 @@ jobs:
             Please make sure you are NOT addressing multiple issues with one PR.
             Note this PR might be rejected due to its size.
       - name: Is the PR extra-large?
-        if: steps.label-pr-size.outputs.pr_is_xl
+        if: "${{ steps.label-pr-size.outputs.pr_is_xl == 'true' }}"
         run: |
-          echo "${{ steps.label-pr-size.outputs.pr_is_xl }}"
+          echo "${{ steps.label-pr-size.outputs.pr_is_xl == 'true' }}"
           echo "PR is xl."
+      - name: Is the PR not extra-large?
+        if: "${{ steps.label-pr-size.outputs.pr_is_xl == 'false' }}"
+        run: |
+          echo "${{ steps.label-pr-size.outputs.pr_is_xl == 'false' }}"
+          echo "PR is not xl."
