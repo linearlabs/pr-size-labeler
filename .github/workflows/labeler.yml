@@ -1,6 +1,9 @@
-name: labeler
+name: Labeler
+run-name: Labeler workflow initiated by ${{ github.actor }}
 
-on: [pull_request]
+on: 
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   labeler:
@@ -8,7 +11,10 @@ jobs:
     name: Label the PR size
     steps:
       - uses: actions/checkout@v3
-      - uses: ./
+      - name: Label PR size
+        id: label-pr-size
+        uses: ./
+        continue-on-error: true
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           xs_max_size: '10'
@@ -16,7 +22,18 @@ jobs:
           m_max_size: '200'
           l_max_size: '450'
           fail_if_xl: 'true'
+          comment_if_xl: 'true'
           message_if_xl: >
             This PR exceeds the recommended size of 1000 lines.
             Please make sure you are NOT addressing multiple issues with one PR.
             Note this PR might be rejected due to its size.
+      - name: Is the PR extra-large?
+        if: "${{ steps.label-pr-size.outputs.pr_is_xl == 'true' }}"
+        run: |
+          echo "${{ steps.label-pr-size.outputs.pr_is_xl == 'true' }}"
+          echo "PR is xl."
+      - name: Is the PR not extra-large?
+        if: "${{ steps.label-pr-size.outputs.pr_is_xl == 'false' }}"
+        run: |
+          echo "${{ steps.label-pr-size.outputs.pr_is_xl == 'false' }}"
+          echo "PR is not xl."
