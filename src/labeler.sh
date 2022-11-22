@@ -24,6 +24,8 @@ labeler::label() {
 
   if [ "$label_to_add" == "$xl_label" ]; then
     if [ -n "$message_if_xl" ]; then
+    echo "is_xl=1" >> $GITHUB_OUTPUT
+
     # TODO Change this to set an env var so other actions can be triggered instead of posting a PR comment.
       github::comment "$message_if_xl"
     fi
