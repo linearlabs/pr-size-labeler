@@ -14,6 +14,7 @@ jobs:
       - name: Label PR size
         id: label-pr-size
         uses: ./
+        continue-on-error: true
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           xs_max_size: '1'
