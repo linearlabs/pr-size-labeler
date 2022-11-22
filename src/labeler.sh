@@ -9,6 +9,7 @@ labeler::label() {
   local -r fail_if_xl="${10}"
   local -r message_if_xl="${11}"
   local -r files_to_ignore="${12}"
+  local -r comment_if_xl="${13}"
 
   local -r pr_number=$(github_actions::get_pr_number)
   local -r total_modifications=$(github::calculate_total_modifications "$pr_number" "$files_to_ignore")
@@ -23,10 +24,9 @@ labeler::label() {
   github::add_label_to_pr "$pr_number" "$label_to_add" "$xs_label" "$s_label" "$m_label" "$l_label" "$xl_label"
 
   if [ "$label_to_add" == "$xl_label" ]; then
-    if [ -n "$message_if_xl" ]; then
     echo "is_xl=1" >> $GITHUB_OUTPUT
 
-    # TODO Change this to set an env var so other actions can be triggered instead of posting a PR comment.
+    if [ -n "$message_if_xl" ] && [ "$comment_if_xl" == "true" ]; then
       github::comment "$message_if_xl"
     fi
 

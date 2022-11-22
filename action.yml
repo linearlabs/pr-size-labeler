@@ -40,6 +40,10 @@ inputs:
     description: 'Label for xl PR'
     required: false
     default: 'size/xl'
+  comment_if_xl:
+    description: 'Post warning comment on PR when size is xl'
+    required: false
+    default: 'false'
   fail_if_xl:
     description: 'Report GitHub Workflow failure if the PR size is xl allowing to forbid PR merge'
     required: false
@@ -61,7 +65,7 @@ inputs:
     default: ''
 outputs:
   is_xl:
-    description: 'True if the pull request is extra-large'
+    description: 'True if the pull request is xl'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -80,6 +84,7 @@ runs:
     - --fail_if_xl=${{ inputs.fail_if_xl }}
     - --message_if_xl="${{ inputs.message_if_xl }}"
     - --files_to_ignore=${{ inputs.files_to_ignore }}
+    - --comment_if_xl=${{ inputs.comment_if_xl }}
 branding:
   icon: 'tag'
   color: 'green'
