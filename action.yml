@@ -59,6 +59,9 @@ inputs:
     description: 'Whitespace separated list of files to ignore when calculating the PR size (sum of changes)'
     required: false
     default: ''
+outputs:
+  is_xl:
+    description: 'True if the pull request is extra-large'
 runs:
   using: 'docker'
   image: 'Dockerfile'

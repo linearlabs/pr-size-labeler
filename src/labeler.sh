@@ -24,11 +24,12 @@ labeler::label() {
 
   if [ "$label_to_add" == "$xl_label" ]; then
     if [ -n "$message_if_xl" ]; then
+    # TODO Change this to set an env var so other actions can be triggered instead of posting a PR comment.
       github::comment "$message_if_xl"
     fi
 
     if [ "$fail_if_xl" == "true" ]; then
-      echoerr "Pr is xl, please, short this!!"
+      echoerr "Pull request is xl."
       exit 1
     fi
   fi
