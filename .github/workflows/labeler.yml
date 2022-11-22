@@ -1,6 +1,9 @@
-name: labeler
+name: Pull Requests
+run-name: Pull Requests workflow initiated by ${{ github.actor }}
 
-on: [pull_request]
+on: 
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   labeler:
