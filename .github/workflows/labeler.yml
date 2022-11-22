@@ -31,8 +31,3 @@ jobs:
         run: |
           echo "${{ steps.label-pr-size.outputs.pr_is_xl }}"
           echo "PR is xl."
-      - name: Is the PR not extra-large?
-        if: !steps.label-pr-size.outputs.pr_is_xl
-        run: |
-          echo "${{ steps.label-pr-size.outputs.pr_is_xl }}"
-          echo "PR is not xl."
