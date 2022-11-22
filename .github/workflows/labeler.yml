@@ -21,7 +21,7 @@ jobs:
           m_max_size: '3'
           l_max_size: '4'
           fail_if_xl: 'false'
-          comment_if_xl: 'false'
+          comment_if_xl: 'true'
           message_if_xl: >
             This PR exceeds the recommended size of 1000 lines.
             Please make sure you are NOT addressing multiple issues with one PR.
